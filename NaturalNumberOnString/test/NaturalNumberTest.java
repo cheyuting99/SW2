@@ -342,7 +342,7 @@ public abstract class NaturalNumberTest {
         NaturalNumber nExpected = this.constructorRef(i);
 
         int r = n.divideBy10();
-        int rExpected = n.divideBy10();
+        int rExpected = nExpected.divideBy10();
 
         /*
          * Assert that values of variables match expectations
