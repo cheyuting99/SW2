@@ -210,7 +210,7 @@ public abstract class NaturalNumberTest {
         /*
          * Set up variables and call method under test
          */
-        NaturalNumber twenty = this.constructorRef(0);
+        NaturalNumber twenty = this.constructorRef("20");
         NaturalNumber n = this.constructorTest(twenty);
         NaturalNumber nExpected = this.constructorRef(twenty);
         /*
@@ -262,7 +262,7 @@ public abstract class NaturalNumberTest {
     }
 
     /**
-     * Tests the multiplyBy10 method on a NaturalNumber3 and adding 7.
+     * Tests the multiplyBy10 method on a NaturalNumber3 and adds 7.
      */
     @Test
     public final void testMultiplyBy10WithAdding() {
@@ -307,8 +307,8 @@ public abstract class NaturalNumberTest {
     }
 
     /**
-     * Tests the divideBy10 method on a small NaturalNumber that will be reduced
-     * to zero after the method is called.
+     * Tests the divideBy10 method on a NaturalNumber < 10 so that it will be
+     * reduced to zero after the method is called.
      */
     @Test
     public final void testDivideBy10Small() {
@@ -317,6 +317,27 @@ public abstract class NaturalNumberTest {
          */
         NaturalNumber n = this.constructorTest("5");
         NaturalNumber nExpected = this.constructorRef("5");
+
+        int r = n.divideBy10();
+        int rExpected = nExpected.divideBy10();
+
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(nExpected, n);
+        assertEquals(rExpected, r);
+    }
+
+    /**
+     * Tests the divideBy10 method on a NaturalNumber with a value of 0.
+     */
+    @Test
+    public final void testDivideBy10Zero() {
+        /*
+         * Set up variables and call method under test
+         */
+        NaturalNumber n = this.constructorTest(0);
+        NaturalNumber nExpected = this.constructorRef(0);
 
         int r = n.divideBy10();
         int rExpected = nExpected.divideBy10();

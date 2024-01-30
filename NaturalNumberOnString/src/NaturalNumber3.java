@@ -32,9 +32,8 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
      * Creator of initial representation.
      */
     private void createNewRep() {
-        // empty string for intial value (initial value = 0).
+        // assign an empty string for the intial value (0).
         this.rep = "";
-
     }
 
     /*
@@ -45,9 +44,8 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
      * No-argument constructor.
      */
     public NaturalNumber3() {
-        // give the natural number an initial value
+        // gives the natural number an initial value
         this.createNewRep();
-
     }
 
     /**
@@ -59,11 +57,12 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(int i) {
         assert i >= 0 : "Violation of: i >= 0";
 
+        // initialize the natural number
         this.createNewRep();
+        // if greater than zero, add the given int on to this.rep as a string
         if (i > 0) {
             this.rep += i;
         }
-
     }
 
     /**
@@ -77,7 +76,9 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert s.matches("0|[1-9]\\d*") : ""
                 + "Violation of: there exists n: NATURAL (s = TO_STRING(n))";
 
+        // initialize
         this.createNewRep();
+        // if the string isn't "0", add it onto this.rep
         if (!s.equals("0")) {
             this.rep += s;
         }
@@ -93,7 +94,9 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(NaturalNumber n) {
         assert n != null : "Violation of: n is not null";
 
+        // initialize
         this.createNewRep();
+        // convert natural number to string and add it to this.rep if greater than zero.
         if (n.compareTo(new NaturalNumber3()) > 0) {
             this.rep += n.toString();
         }
@@ -143,24 +146,33 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert 0 <= k : "Violation of: 0 <= k";
         assert k < RADIX : "Violation of: k < 10";
 
+        // add the digit k on to the end of the string.
         this.rep += k;
 
     }
 
     @Override
     public final int divideBy10() {
+        // initialize remainder
+        int remainder = 0;
 
-        int l = this.rep.length() - 1;
+        // make sure this.rep is not an empty string
+        if (!this.isZero()) {
+            // get the last digit from this.rep
+            int l = this.rep.length() - 1;
+            remainder = Integer.parseInt(this.rep.substring(l));
+            // update this.rep by removing the last digit
+            this.rep = this.rep.substring(0, l);
 
-        int remainder = Integer.parseInt(this.rep.substring(l));
-        this.rep = this.rep.substring(0, l);
+        }
 
+        // return the digit that used to be at the end.
         return remainder;
     }
 
     @Override
     public final boolean isZero() {
-
+        // check if the string is empty.
         return this.rep.length() == 0;
     }
 
